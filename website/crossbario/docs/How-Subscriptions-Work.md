@@ -1,6 +1,6 @@
 With the Publish & Subscribe (PubSub) messaging pattern in WAMP, a WAMP client issues a subscription request to a router, in which it expresses interest in a topic. The router registers this. Whenever a publication to this topic comes in, an event is dispatched to all WAMP clients which are currently registered for the topic.
 
-For example, any WAMP client which has registered a subscription for the topic `com.myapp.topic1` receives an event whenever any other client publishes to the topic `com.myapp.topic1`. (The "any *other*" is because as a default, no event is dispatched to the publisher itself if it is subscribed to the topic. This behavior can be overriden.)
+For example, any WAMP client which has registered a subscription for the topic `com.myapp.topic1` receives an event whenever any other client publishes to the topic `com.myapp.topic1`. (The "any *other*" is because as a default, no event is dispatched to the publisher itself if it is subscribed to the topic. This behavior can be overriden by setting `exclude_me=False` in `PublishOptions` when calling `publish()`).
 
 The 'subscription', as the term is used here, exists within the router. A subscription is created when a client sends a subscription request for a topic where there are currently no other subscribers. It is deleted when the last subscriber cancels its subscriptions, or its session is disconnected.
 
