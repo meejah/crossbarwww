@@ -44,3 +44,5 @@ The `options` are:
 The argument `executable` provides the path to the executable that Crossbar.io uses when starting the worker. 
 
 Crossbar.io first parses this as an absolute path as well as a relative path (relative to the `workdir` in `options`). If no executable is found there, then it considers it an environment variable and attempts to use the path stored there.
+
+> **Note**: Python defaults to unbuffered stdout, so you probably want to [pass the -u option](https://docs.python.org/3/using/cmdline.html#cmdoption-u) when configuring Python guest workers.
