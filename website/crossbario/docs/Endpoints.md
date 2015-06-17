@@ -54,7 +54,7 @@ Option | Description
 **`interface`** | optional interface to listen on, e.g. `127.0.0.1` to only listen on IPv4 loopback or `::1` to only listen on IPv6 loopback.
 **`backlog`** | optional accept queue depth of listening endpoints (default: **50**)
 **`shared`** | flag which controls sharing the socket between multiple workers - this currently only works on Linux >= 3.9 (default: **false**)
-**`tls`** | optional endpoint TLS configuration
+**`tls`** | optional endpoint TLS configuration. If present, this is a dict containing keys: `key`: file path; `certificate`: file path; `dhparam`: (optional) file path; `ciphers`: (optional) list of strings. Relative paths are allowed, based from the directory the config file is in.
 
 #### TCP Connecting Endpoints
 
@@ -68,6 +68,18 @@ Here is an *Endpoint* that is connecting over TCP to `localhost` on port 8080:
 }
 ```
 
+Here is a listening *Endpoint* that uses TLS (note there's "interface" instead of "host"):
+
+```javascript
+"endpoint": {
+    "type": "tcp",
+    "interface": "127.0.0.1",
+    "port": 443,
+    "tls": {
+        "key": "server.key",
+        "certificate": "server.crt"
+    }
+```
 TCP connecting *Endpoints* can be configured using the following parameters:
 
 Option | Description
