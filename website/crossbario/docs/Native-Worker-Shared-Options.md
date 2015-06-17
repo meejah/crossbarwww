@@ -9,7 +9,7 @@ option | description
 **`pythonpath`** | A list of paths to prepend to the Python seach path, e.g. `["..", "/home/joe/mystuff"]` (default: **[]**)
 **`cpu_affinity`** | The worker CPU affinity to set - a list of CPU IDs (integers), e.g. `[0, 1]` (default: **unset**) - currently only supported on Linux and Windows, [not on FreeBSD](https://github.com/giampaolo/psutil/issues/566)
 **`reactor`** | Choose the type of Twisted reactor, instead of the one chosen automatically. See below.
-**`env`** | Environment variables to pass to components within the worker.
+**`env`** | Environment variables to pass to components within the worker. This should be a `dict` with two keys: **inherit** which is a bool or a list of variables to inherit; and **vars** which is a `dict` of (additional) environment variables to set.
 
 Selecting a **Twisted reactor** is platform-based: `reactor` takes a dictionary as an argument, with the platform as the keys and a single reactor per platform as the value.
 
