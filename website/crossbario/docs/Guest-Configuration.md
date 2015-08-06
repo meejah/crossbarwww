@@ -34,7 +34,7 @@ The `options` are:
 
 1. `env`: A dictionary of environment variables to set for the executable, with the possible keys `inherit` and `vars
 2. `workdir`: The `working directory for the executable.
-3. `watch`: Watch directories and carry out an action based on changes in these.
+3. `watch`: Watch directories and carry out an action based on changes in these. Takes a dict with keys `directories` (a list of path-names) and `action` (only `restart` accepted).
 4. `stdin`: Dictionary of data to pass in on standard in, or the string 'close`. The dictionary should contain a key `type` (value `json` or `msgpack`) and a key `value` which is the data to JSON/msgpack encode. Optionally, `close` can be a key (value `true`) as well, causing stdin to be closed after the data is written.
 5. `stdout`: Action on signal on standard out, can be `close`, `log` or `drop`
 6. `stderr`: Action on signal on standard error, can be `close`, `log` or `drop`
