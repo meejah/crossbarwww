@@ -37,3 +37,17 @@ Crossbar.io is able to start, monitor and host application components. Please se
 ## Starting Crossbar.io externally
 
 You can have Crossbar.io be started from OS level startup facilities (like Linux **rc.d scripts** or **systemd**). You actual application might also be started by the same facility and then depend on the Crossbar.io service having started already earlier.
+
+
+## Startup and Shutdown Behavior
+
+When running from a configuration file (as opposed to connecting to a management uplink), Crossbar will start all components (whether in their own Container or running inside a Router) exactly once. When such a component shuts down or disconnects, it is gone. Individual components can exit cleanly, or with errors. When all components in a container shut down, the container itself shuts down (with error, if any component errored). Once all containers have exited, Crossbar itself will shutdown and exit and will produce a 0 (clean) exit-code only if **all** components exited cleanly.
+
+This table summarizes the cases:
+
+| container type | component exit status |  crossbar behavior
+| ---------------|-----------------------|---------------------------------
+| container      |  clean                | if last, shutdown container cleanly
+| container      |  fail                 | if last, shutdown container with error
+| router         |  clean                | nothing
+| router         |  fail                 | shutdown router with error
